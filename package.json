@@ -1,8 +1,8 @@
 {
   "name": "jquery.poseidon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight jQuery AJAX plugin with polling support",
-  "main": "jquery.poseidon.js",
+  "main": "dist/jquery.poseidon.min.js",
   "repository": "https://github.com/DanielTheGeek/jquery.poseidon.git",
   "author": "danielthegeek <drapprince@gmail.com>",
   "license": "MIT",
