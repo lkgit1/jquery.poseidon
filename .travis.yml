@@ -1,0 +1,14 @@
+env:
+  - JQUERY=1.11
+  - JQUERY=2.2
+  - JQUERY=3.0.0-beta1
+install:
+  - npm install
+  - npm install jquery@$JQUERY
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: 0990702c97ba2260f2d4f150f4d70a9eb0f34ae4  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  on:
+    branch: master

@@ -1,0 +1,100 @@
+<form action="https://reqres.in/api/users">
+	<input type="text" name="name" placeholder="What's your name?">
+	<input type="text" name="job" placeholder="What do you do?">
+	<div data-poseidon-target=""></div>
+	<button id="formBtn">Submit</button>
+</form>
+<br>
+<h1>API examples</h1>
+<button id="GET">GET resource</button>
+<div id="target"></div>
+<br>
+<button id="POST">POST resource</button>
+<div id="target_post"></div>
+
+<button id="render">Render Template</button>
+<div id="users"></div>
+<script id="users-list-template" type="text/x-poseidon-template">
+	<div class="user">
+		<div class="image">
+			<img src="{{ avatar }}">
+		</div>
+		<div>{{first_name}} {{last_name}} {{>> <html></html> }}</div>
+	</div>
+</script>
+
+<a href='https://www.freepik.com/free-vector/fire-logo-with-letter-p_929838.htm'>Designed by Maestro99</a>
+
+<!-- Scripts -->
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="src/jquery.poseidon.js"></script>
+<script type="text/javascript">
+	$('#formBtn').click(function() {
+		$.poseidon('form', {
+			method: 'post',
+			dataType: 'json',
+			onSuccess: function(data) {
+				$('[data-poseidon-target]').text(JSON.stringify(data));
+			}
+		}).request('https://reqres.in/api/users', {
+			method: 'get',
+			onSuccess(data) {
+				var template = $('#users-list-template').html();
+				
+				$.each(data.data, function(index, value) {
+					var render = $.poseidon.render(template, value);
+					$('#users').append(render);
+				});
+			}
+		})
+	});
+
+	$('#GET').click(function() {
+		$.poseidon.request('https://reqres.in/api/users?delay=3', {
+			method: 'get',
+			onBeforeSend() {
+				$('#target').text('Loading data...');
+			},
+			onSuccess(data) {
+				$('#target').text(JSON.stringify(data));	
+			}
+		});
+	});
+
+	$('#POST').click(function() {
+		$.poseidon.request('https://reqres.in/api/users', {
+			onBeforeSend: function() {
+				$('#target_post').text('Loading data...');
+			},
+			onSuccess: function(data) {
+				$('#target_post').text(JSON.stringify(data));	
+			}
+		});
+	});
+
+	$('#render').click(function() {
+		$.poseidon.request('https://reqres.in/api/users', {
+			method: 'get',
+			onSuccess(data) {
+				var template = $('#users-list-template').html();
+				
+				$.each(data.data, function(index, value) {
+					var render = $.poseidon.render(template, value);
+					$('#users').append(render);
+				});
+			}
+		});
+	});	
+
+	$.poseidon.request('https://reqres.in/api/users', {
+			method: 'get',
+			onSuccess: function(data) {
+				var template = $('#users-list-template').html();
+				
+				$.each(data.data, function(index, value) {
+					var render = $.poseidon.render(template, value);
+					$('#users').append(render);
+				});
+			}
+		});
+</script>
