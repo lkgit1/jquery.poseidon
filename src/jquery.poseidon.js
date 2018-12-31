@@ -38,7 +38,7 @@
 
 						$.ajax({
 							url: $(form).attr('action'),
-							type: settings.method,
+							method: settings.method,
 							data: data,
 							dataType: settings.dataType,
 							cache: settings.cache,
