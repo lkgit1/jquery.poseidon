@@ -1,5 +1,5 @@
 # jQuery.Poseidon
-Lightweight jQuery AJAX plugin and API client
+Lightweight jQuery templating plugin with ajax support for consuming APIs and rendering data to DOM
 
 ## Overview
 The jQuery Poseidon plugin allows you to easily submit forms via AJAX, make API requests and even render templates on the fly. The main method, Poseidon, gathers information from the form element to determine how to manage the form submit process.
